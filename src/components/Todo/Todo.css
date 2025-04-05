@@ -4,6 +4,8 @@
     margin: 0 auto;
     padding: 20px;
     justify-content: center;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px #00000077;
 }
 
 .title-todo {
@@ -32,6 +34,7 @@
 
 .title-input-form p {
     margin-bottom: 2px;
+    font-weight: 500;
     /* color: #1f4557; */
 
 }
@@ -52,4 +55,10 @@
     align-items: flex-end;
     /* background-color: red; */
 
+}
+
+.button-form button {
+    box-shadow: 0 0 0 0;
+    height: 40px;
+    font-size: 25px;
 }

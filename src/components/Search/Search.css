@@ -1,0 +1,31 @@
+.container-search {
+    border-bottom: 1px solid #1f4557;
+    padding: 0 0 20px 0;
+    margin-top: 10px;
+}
+
+
+.search-area .input-form {
+    width: 85.6%;
+    margin-right: 2px;
+}
+
+.search-area button {
+    box-shadow: 0 0 0 0;
+}
+
+.search-area p,
+.filter-area p {
+    font-weight: 500;
+}
+
+.filter-area {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.button-area button {
+    margin-right: 5px;
+}

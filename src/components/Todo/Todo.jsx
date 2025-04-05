@@ -4,10 +4,9 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
 import InputLabel from '@mui/material/InputLabel';
+
+
 import FormControl from '@mui/material/FormControl';
-
-
-
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
@@ -15,19 +14,21 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-function ContainedButtons() {
-    return (
-        <Stack direction="row" spacing={2}>
-            <Button variant="contained">Contained</Button>
-            <Button variant="contained" disabled>
-                Disabled
-            </Button>
-            <Button variant="contained" href="#contained-buttons">
-                Link
-            </Button>
-        </Stack>
-    );
-}
+import Search from "../Search/Search";
+
+// function ContainedButtons() {
+//     return (
+//         <Stack direction="row" spacing={2}>
+//             <Button variant="contained">Contained</Button>
+//             <Button variant="contained" disabled>
+//                 Disabled
+//             </Button>
+//             <Button variant="contained" href="#contained-buttons">
+//                 Link
+//             </Button>
+//         </Stack>
+//     );
+// }
 
 
 function Todo() {
@@ -72,12 +73,12 @@ function Todo() {
                 <div className="button-form">
                     <Button
                         variant="contained"
-                        style={{ height: "40px", boxShadow: "0 0 0 0" }}>
+                    >
                         +
                     </Button>
                 </div>
             </form>
-
+            <Search />
         </section>
     )
 }
