@@ -1,10 +1,55 @@
-.form {
-    background-color: red;
-    display: flex;
+.container-todo {
+    background-color: white;
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
 }
 
-.form-select-buttonAdd {
+.title-todo {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #1f4557
+        /* possivelmente second color #1f4557  */
+}
+
+.title-todo h3 {
+    font-size: 30px;
+    color: var(--main-color);
+}
+
+.todo-form {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    padding: 5px 0;
+}
+
+.title-input-form {
+    width: 100%;
+}
+
+.title-input-form p {
+    margin-bottom: 2px;
+    /* color: #1f4557; */
+
+}
+
+.input-form {
+    width: 100%;
+}
+
+.select-form {
     display: flex;
     align-items: flex-end;
+    /* background-color: green; */
+
+}
+
+.button-form {
+    display: flex;
+    align-items: flex-end;
+    /* background-color: red; */
 
 }
