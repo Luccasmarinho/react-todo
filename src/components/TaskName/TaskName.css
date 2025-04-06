@@ -1,4 +1,4 @@
-.container-todo {
+/* .container-todo {
     background-color: white;
     width: 500px;
     margin: 0 auto;
@@ -6,14 +6,14 @@
     justify-content: center;
     border-radius: 8px;
     box-shadow: 5px 5px 10px #00000077;
-}
+} */
 
-/* .title-todo {
+.title-todo {
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #1f4557
-        possivelmente second color #1f4557 
+        /* possivelmente second color #1f4557  */
 }
 
 .title-todo h3 {
@@ -37,9 +37,9 @@
     font-weight: 500;
     /* color: #1f4557; */
 
-/* } */
+}
 
-/* .input-form {
+.input-form {
     width: 100%;
 }
 
@@ -63,4 +63,4 @@
     box-shadow: 0 0 0 0;
     height: 40px;
     font-size: 25px;
-} */
+}
