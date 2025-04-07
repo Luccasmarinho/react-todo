@@ -25,6 +25,7 @@
 .title-input-form p {
     margin-bottom: 2px;
     font-weight: 500;
+    font-size: var(--main-text-size);
     /* color: #1f4557; */
 
 }
@@ -36,11 +37,11 @@
 .select-form {
     display: flex;
     align-items: flex-end;
-
 }
 
 .select-form p {
     font-weight: 500;
+    font-size: var(--main-text-size);
 }
 
 .button-form {

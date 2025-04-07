@@ -17,6 +17,7 @@
 .search-area p,
 .filter-area p {
     font-weight: 500;
+    font-size: var(--main-text-size);
 }
 
 .filter-area {
