@@ -1,5 +1,5 @@
 
-import "./TaskName.css";
+import "./TaskForm.css";
 
 import * as React from 'react';
 
@@ -11,7 +11,8 @@ import Select from '@mui/material/Select';
 
 import Button from '@mui/material/Button';
 
-function TaskName() {
+
+function TaskForm({ inputTitle, inputIcon }) {
     const [priority, setPriority] = React.useState('alta');
 
     const handleChange = (event) => {
@@ -24,7 +25,7 @@ function TaskName() {
             </div>
             <form className="todo-form">
                 <div className="title-input-form">
-                    <p>Digite sua tarefa</p>
+                    <p>{inputTitle}</p>
                     <TextField
                         type="search"
                         className="input-form"
@@ -54,7 +55,7 @@ function TaskName() {
                     <Button
                         variant="contained"
                     >
-                        +
+                        {inputIcon}
                     </Button>
                 </div>
             </form>
@@ -62,4 +63,4 @@ function TaskName() {
     )
 }
 
-export default TaskName
+export default TaskForm

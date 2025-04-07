@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 // import Todo from "./components/Todo/Todo.jsx"
 // import './index.css'
 import App from './App.jsx'
+import TaskEdit from './components/TaskEdit/TaskEdit.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +17,10 @@ createRoot(document.getElementById('root')).render(
         <Route
           path='/to-do-list'
           element={<App />}>
+        </Route>
+        <Route
+          path='/to-do-list/edit/:id'
+          element={<TaskEdit />}>
         </Route>
         <Route
           path='*'
