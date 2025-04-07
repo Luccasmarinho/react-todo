@@ -7,7 +7,7 @@ function BasicPagination() {
   return (
     <div className="container-pagination">
       <Stack>
-        <Pagination count={1} color="primary" />
+        <Pagination count={11} color="primary" />
         {/* <Pagination count={10} disabled /> */}
       </Stack>
     </div>
