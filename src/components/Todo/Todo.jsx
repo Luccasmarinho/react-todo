@@ -33,7 +33,7 @@ function Todo() {
                             taskPriority={e.priority}
                             allTasks={allTasks}
                             setAllTasks={setAllTasks}
-                            indiceDelete={i} />)
+                            indiceTask={i} />)
                     )}
             <BasicPagination />
         </section>
