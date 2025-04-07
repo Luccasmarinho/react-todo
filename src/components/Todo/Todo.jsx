@@ -4,6 +4,7 @@ import * as React from 'react';
 import Search from "../Search/Search";
 import TaskName from "../TaskName/TaskName";
 import TaskList from "../TaskList/TaskList";
+import BasicPagination from "../Pagination/BasicPagination";
 
 function Todo() {
     return (
@@ -11,6 +12,7 @@ function Todo() {
             <TaskName />
             <Search />
             <TaskList />
+            <BasicPagination />
         </section>
     )
 }
