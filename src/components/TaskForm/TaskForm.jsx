@@ -12,9 +12,9 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
 
-function TaskForm({ inputTitle, inputIcon, valuesForm }) {
-    const [valuePriority, setValuePriority] = useState('Alta');
-    const [inputNameValue, setInputNameValue] = useState("");
+function TaskForm({ inputTitle, inputIcon, valuesForm, taskName = "", taskPriority = "Alta" }) {
+    const [valuePriority, setValuePriority] = useState(taskPriority);
+    const [inputNameValue, setInputNameValue] = useState(taskName);
 
     const handleChange = (event, state) => {
         state(event.target.value);
