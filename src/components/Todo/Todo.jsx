@@ -42,11 +42,13 @@ function Todo() {
 
     // const startIndex = (page - 1) * itemsPerPage;
     // const endIndex = startIndex + itemsPerPage;
+    const tasksDone = allTasks.filter((task) => task.done).length;
+    const totalTasks = allTasks.length;
 
     return (
         <section className="container-todo">
             <TaskAction setAllTasks={setAllTasks} allTasks={allTasks} />
-            <Search filterSearch={filterSearch} />
+            <Search filterSearch={filterSearch} tasksDone={tasksDone} totalTasks={totalTasks} />
             {!allTasks || allTasks.length == 0
                 ? <EmptyTask />
                 : allTasks
@@ -58,6 +60,7 @@ function Todo() {
                             key={i}
                             taskName={e.name}
                             taskPriority={e.priority}
+                            taskDone={e.done}
                             allTasks={allTasks}
                             setAllTasks={setAllTasks}
                             indiceTask={i} />)

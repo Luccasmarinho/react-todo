@@ -9,10 +9,22 @@
     justify-content: space-between;
     border-bottom: 1px solid black;
     padding: 5px 10px;
+    transition: linear .1s;
+    /* background-color: #54a3c450; */
+}
+
+.task-checked {
+    display: flex;
+    gap: 5px;
+}
+
+.task-checked .icon-pending {
+    color: var(--main-color);
 }
 
 .task p {
     word-break: break-word;
+    /* text-decoration: line-through; */
 }
 
 .buttons {

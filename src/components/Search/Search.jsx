@@ -1,6 +1,6 @@
 import "./Search.css";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProgressCircular from "../Progress/ProgressCircular";
 
 import TextField from '@mui/material/TextField';
@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
-function Search({ filterSearch }) {
+function Search({ filterSearch, tasksDone, totalTasks }) {
     const [priority, setPriority] = useState('todos');
     const [inputSearch, setInputSearch] = useState("")
 
@@ -29,6 +29,7 @@ function Search({ filterSearch }) {
 
     function deleteTextInput() {
         setInputSearch("")
+        filterSearch("")
     }
 
     return (
@@ -83,9 +84,9 @@ function Search({ filterSearch }) {
                         <ArrowDropDownIcon style={{ width: "20px" }} />
                     </Button>
                 </div>
-                <div>
-                    <p>Status:</p>
-                    <ProgressCircular />
+                <div className="progress-area">
+                    <p>Progresso:</p>
+                    <ProgressCircular tasksDone={tasksDone} totalTasks={totalTasks} />
                 </div>
             </div>
         </section>

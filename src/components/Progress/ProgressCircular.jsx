@@ -1,12 +1,16 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useEffect, useState } from 'react';
 
-function ProgressCircular() {
+function ProgressCircular({ tasksDone, totalTasks }) {
+    const progress = Math.round(((100 / totalTasks) * tasksDone).toFixed(1))
+
+
     return (
         <div>
             <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-                <CircularProgress variant="determinate" value={50} />
+                <CircularProgress variant="determinate" value={progress} />
                 <Box
                     sx={{
                         top: 0,
@@ -24,7 +28,7 @@ function ProgressCircular() {
                         component="div"
                         sx={{ color: 'text.secondary' }}
                     >
-                        {`50%`}
+                        {`${progress}%`}
                     </Typography>
                 </Box>
             </Box>
