@@ -3,12 +3,12 @@ import "./BasicPagination.css"
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-function BasicPagination() {
+function BasicPagination({ countPagination, isDisabled }) {
   return (
     <div className="container-pagination">
       <Stack>
-        <Pagination count={11} color="primary" />
-        {/* <Pagination count={10} disabled /> */}
+        <Pagination count={countPagination} color="primary" disabled={isDisabled} />
+        {/* <Pagination count={1} disabled /> */}
       </Stack>
     </div>
   );

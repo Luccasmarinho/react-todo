@@ -1,6 +1,6 @@
 import "./Search.css";
 
-import * as React from 'react';
+import { useState } from 'react';
 import ProgressCircular from "../Progress/ProgressCircular";
 
 import TextField from '@mui/material/TextField';
@@ -14,25 +14,38 @@ import Select from '@mui/material/Select';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
-function Search() {
-    const [priority, setPriority] = React.useState('todos');
+function Search({ filterSearch }) {
+    const [priority, setPriority] = useState('todos');
+    const [inputSearch, setInputSearch] = useState("")
 
     const handleChange = (event) => {
         setPriority(event.target.value);
     };
+
+    function handleChangeInput(event) {
+        setInputSearch(event.target.value)
+        filterSearch(event.target.value)
+    }
+
+    function deleteTextInput() {
+        setInputSearch("")
+    }
 
     return (
         <section className="container-search">
             <div className="search-area">
                 <p>Pesquisar:</p>
                 <TextField
+                    value={inputSearch}
                     className="input-form"
+                    onChange={handleChangeInput}
                     label="Pesquisa"
                     variant="outlined"
                     size="small"
                     placeholder="Pesquisa" />
                 <Button
                     variant="contained"
+                    onClick={deleteTextInput}
                     style={{ height: "40px" }}>
                     <BackspaceIcon />
                 </Button>

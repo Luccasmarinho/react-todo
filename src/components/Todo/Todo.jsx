@@ -10,22 +10,49 @@ import TaskAction from "../TaskAction/TaskAction";
 import EmptyTask from "../EmptyTask/EmptyTask";
 
 function Todo() {
-    const [allTasks, setAllTasks] = useState([]);
+    // const [allTasks, setAllTasks] = useState([]);
+    const [allTasks, setAllTasks] = useState(() => {
+        const stored = localStorage.getItem("todo");
+        return stored ? JSON.parse(stored) : [];
+    });
+    const [valueSearch, setValueSearch] = useState("");
+    const [isDisable, setIsDisabled] = useState(true);
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 5;
+
+    // useEffect(() => {
+    //     function loadTasks() {
+    //         // localStorage.setItem("todo", JSON.stringify([...allTasks]))
+    //         setAllTasks(JSON.parse(localStorage.getItem("todo")))
+    //     }
+    //     loadTasks()
+    // }, []);
 
     useEffect(() => {
-        function loadTasks() {
-            setAllTasks(JSON.parse(localStorage.getItem("todo")))
+        localStorage.setItem("todo", JSON.stringify(allTasks));
+        function paginationDisabled() {
+            allTasks.length == 0 ? setIsDisabled(true) : setIsDisabled(false)
         }
-        loadTasks()
-    }, []);
+        paginationDisabled()
+    }, [allTasks]);
+
+    function filterSearch(value) {
+        setValueSearch(value)
+    }
+
+    // const startIndex = (page - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
 
     return (
         <section className="container-todo">
             <TaskAction setAllTasks={setAllTasks} allTasks={allTasks} />
-            <Search />
+            <Search filterSearch={filterSearch} />
             {!allTasks || allTasks.length == 0
                 ? <EmptyTask />
                 : allTasks
+                    // .slice(startIndex, endIndex)
+                    .filter((e) =>
+                        e.name.toLowerCase().includes(valueSearch.toLocaleLowerCase()))
                     .map((e, i) => (
                         <TaskList
                             key={i}
@@ -35,7 +62,7 @@ function Todo() {
                             setAllTasks={setAllTasks}
                             indiceTask={i} />)
                     )}
-            <BasicPagination />
+            <BasicPagination countPagination={1} isDisabled={isDisable} />
         </section>
     )
 }
