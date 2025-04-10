@@ -20,13 +20,6 @@ function Todo() {
     const [page, setPage] = useState(1);
     const itemsPerPage = 5;
 
-    // useEffect(() => {
-    //     function loadTasks() {
-    //         // localStorage.setItem("todo", JSON.stringify([...allTasks]))
-    //         setAllTasks(JSON.parse(localStorage.getItem("todo")))
-    //     }
-    //     loadTasks()
-    // }, []);
 
     useEffect(() => {
         localStorage.setItem("todo", JSON.stringify(allTasks));
@@ -57,7 +50,7 @@ function Todo() {
                         e.name.toLowerCase().includes(valueSearch.toLocaleLowerCase()))
                     .map((e, i) => (
                         <TaskList
-                            key={i}
+                            key={e.id}
                             taskName={e.name}
                             taskPriority={e.priority}
                             taskDone={e.done}

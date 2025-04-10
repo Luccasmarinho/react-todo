@@ -4,8 +4,9 @@ import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
 
 function ProgressCircular({ tasksDone, totalTasks }) {
-    const progress = Math.round(((100 / totalTasks) * tasksDone).toFixed(1))
-
+    const progress = totalTasks == 0
+        ? 0
+        : Math.round(((100 / totalTasks) * tasksDone).toFixed(1))
 
     return (
         <div>

@@ -14,6 +14,7 @@ const TaskAction = ({ setAllTasks }) => {
         createLocalStorage()
 
         const keyValue = {
+            id: crypto.randomUUID(),
             ...valuesInput,
             done: false
         }

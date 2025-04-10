@@ -16,7 +16,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function Search({ filterSearch, tasksDone, totalTasks }) {
     const [priority, setPriority] = useState('todos');
-    const [inputSearch, setInputSearch] = useState("")
+    const [inputSearch, setInputSearch] = useState("");
 
     const handleChange = (event) => {
         setPriority(event.target.value);
@@ -69,21 +69,23 @@ function Search({ filterSearch, tasksDone, totalTasks }) {
                         </Select>
                     </FormControl>
                 </div>
-                <div className="button-area">
+                {/* <div className="button-area">
                     <p>Ordenar:</p>
                     <Button
                         variant="contained"
+                        onClick={handleChangeOrderAsc}
                         style={{ height: "40px" }}>
                         A-Z
-                        <ArrowDropDownIcon style={{ width: "20px" }} />
+                        &darr;
                     </Button>
                     <Button
                         variant="contained"
+                        onClick={handleChangeOrderDesc}
                         style={{ height: "40px" }}>
                         Z-A
-                        <ArrowDropDownIcon style={{ width: "20px" }} />
+                        &darr;
                     </Button>
-                </div>
+                </div> */}
                 <div className="progress-area">
                     <p>Progresso:</p>
                     <ProgressCircular tasksDone={tasksDone} totalTasks={totalTasks} />
