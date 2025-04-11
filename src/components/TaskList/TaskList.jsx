@@ -11,12 +11,12 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import PendingIcon from '@mui/icons-material/Pending';
 import { Link } from "react-router-dom";
 
-function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, taskDone }) {
+function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, taskDone, taskId }) {
     const [colorPriority, setColorPriority] = useState("");
     const [taskChecked, setTaskChecked] = useState(taskDone);
     const [backgroundColorTask, setBackgroundColorTask] = useState("");
     const [text, setText] = useState("none");
-    const [icon, setIcon] = useState(<PendingIcon className="icon-pending" />);
+    const [icon, setIcon] = useState(`${taskId}.`);
 
     useEffect(() => {
         function changeColorPriority() {
@@ -39,23 +39,22 @@ function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, t
             } else {
                 setBackgroundColorTask("white")
                 setText("none")
-                setIcon(<PendingIcon className="icon-pending" />)
+                setIcon(`${taskId}.`)
             }
         }
         changeTaskComplete()
     }, [taskChecked])
 
-    function deleteTask(i) {
+    function deleteTask(id) {
 
         function deleteTaskLocalStorage(filterTasks) {
             localStorage.setItem("todo", JSON.stringify(filterTasks))
         }
 
-        allTasks.splice(i, 1)
         const tasksLocalStorage = JSON.parse(localStorage.getItem("todo"))
-        const filterTasks = tasksLocalStorage.filter((_, indiceFilter) => indiceFilter != i)
+        const filterTasks = tasksLocalStorage.filter((e) => e.id != id)
         deleteTaskLocalStorage(filterTasks)
-        setAllTasks([...allTasks])
+        setAllTasks([...filterTasks])
 
     }
 
@@ -63,7 +62,8 @@ function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, t
 
         function changeDoneLocalStorage() {
             const local = JSON.parse(localStorage.getItem("todo"))
-            local[indiceTask].done = !local[indiceTask].done
+            const index = local.findIndex((e) => e.name == taskName)
+            local[index].done = !local[index].done
             localStorage.setItem("todo", JSON.stringify(local))
             return local
         }
@@ -77,7 +77,7 @@ function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, t
         <section className="container-tasks">
             <div className="task" style={{ backgroundColor: backgroundColorTask }}>
                 <div className="task-checked">
-                    {icon}
+                    <strong>{icon}</strong>
                     <p style={{ textDecoration: text }}>{taskName}</p>
                 </div>
                 <div className="buttons">
@@ -86,12 +86,12 @@ function TaskList({ taskName, taskPriority, allTasks, setAllTasks, indiceTask, t
                         <Button onClick={handleChangeChecked}>
                             <TaskAltIcon />
                         </Button>
-                        <Link to={`/to-do-list/edit/${indiceTask + 1}`}>
+                        <Link to={`/to-do-list/edit/${taskId}`}>
                             <Button>
                                 <ModeEditOutlineIcon />
                             </Button>
                         </Link>
-                        <Button onClick={() => deleteTask(indiceTask)}>
+                        <Button onClick={() => deleteTask(taskId)}>
                             <DeleteIcon />
                         </Button>
                     </ButtonGroup>

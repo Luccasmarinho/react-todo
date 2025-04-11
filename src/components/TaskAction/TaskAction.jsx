@@ -4,6 +4,13 @@ import TaskForm from '../TaskForm/TaskForm'
 import AddIcon from '@mui/icons-material/Add';
 
 const TaskAction = ({ setAllTasks }) => {
+
+    function generatorId() {
+        let maxId;
+        const local = JSON.parse(localStorage.getItem("todo"))
+        return local.length == 0 ? maxId = 1 : maxId = local.reduce((a, b) => a > b ? a : b).id += 1
+    }
+
     function addTaskLocalStorage(valuesInput) {
 
         function createLocalStorage() {
@@ -14,7 +21,7 @@ const TaskAction = ({ setAllTasks }) => {
         createLocalStorage()
 
         const keyValue = {
-            id: crypto.randomUUID(),
+            id: generatorId(),
             ...valuesInput,
             done: false
         }

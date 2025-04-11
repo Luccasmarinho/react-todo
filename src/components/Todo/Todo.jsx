@@ -48,15 +48,18 @@ function Todo() {
                     // .slice(startIndex, endIndex)
                     .filter((e) =>
                         e.name.toLowerCase().includes(valueSearch.toLocaleLowerCase()))
+                    // .sort((a, b) => b.name.localeCompare(a.name))
                     .map((e, i) => (
                         <TaskList
                             key={e.id}
+                            taskId={e.id}
                             taskName={e.name}
                             taskPriority={e.priority}
                             taskDone={e.done}
-                            allTasks={allTasks}
+                            // allTasks={allTasks}
                             setAllTasks={setAllTasks}
-                            indiceTask={i} />)
+                            // indiceTask={i} 
+                        />)
                     )}
             <BasicPagination countPagination={1} isDisabled={isDisable} />
         </section>

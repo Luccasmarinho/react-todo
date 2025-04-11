@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
           element={<App />}>
         </Route>
         <Route
-          path='/to-do-list/edit/:indice'
+          path='/to-do-list/edit/:id'
           element={<TaskEdit />}>
         </Route>
         <Route

@@ -15,7 +15,9 @@
 
 .task-checked {
     display: flex;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .task-checked .icon-pending {
