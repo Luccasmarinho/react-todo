@@ -17,9 +17,10 @@ function Todo() {
     });
     const [valueSearch, setValueSearch] = useState("");
     const [isDisable, setIsDisabled] = useState(true);
+    const [order, setOrder] = useState("");
+    const [priority, setPriority] = useState("");
     const [page, setPage] = useState(1);
     const itemsPerPage = 5;
-
 
     useEffect(() => {
         localStorage.setItem("todo", JSON.stringify(allTasks));
@@ -29,26 +30,56 @@ function Todo() {
         paginationDisabled()
     }, [allTasks]);
 
-    function filterSearch(value) {
-        setValueSearch(value)
-    }
+    const filterSearch = (value) => setValueSearch(value)
+    const changeOrder = (sort) => setOrder(sort)
+    const filterPriority = (priority) => setPriority(priority)
 
-    // const startIndex = (page - 1) * itemsPerPage;
-    // const endIndex = startIndex + itemsPerPage;
+    // function filterSearch(value) {
+    //     setValueSearch(value)
+    // }
+
+    // function changeOrder(sort) {
+    //     setOrder(sort)
+    // }
+
+    // function filterPriority(priority) {
+    //     setPriority(priority)
+    // }
+
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
     const tasksDone = allTasks.filter((task) => task.done).length;
     const totalTasks = allTasks.length;
 
     return (
         <section className="container-todo">
             <TaskAction setAllTasks={setAllTasks} allTasks={allTasks} />
-            <Search filterSearch={filterSearch} tasksDone={tasksDone} totalTasks={totalTasks} />
+            <Search
+                filterSearch={filterSearch}
+                tasksDone={tasksDone}
+                totalTasks={totalTasks}
+                changeOrder={changeOrder}
+                filterPriority={filterPriority}
+            />
             {!allTasks || allTasks.length == 0
                 ? <EmptyTask />
                 : allTasks
                     // .slice(startIndex, endIndex)
                     .filter((e) =>
                         e.name.toLowerCase().includes(valueSearch.toLocaleLowerCase()))
-                    // .sort((a, b) => b.name.localeCompare(a.name))
+                    .filter((e) =>
+                        priority == "feitos"
+                            ? e.done == true
+                            : priority == "nao-feitos"
+                                ? e.done == false
+                                : allTasks)
+                    .sort((a, b) =>
+                        order == "ASC"
+                            ? a.name.localeCompare(b.name)
+                            : order == "DESC"
+                                ? b.name.localeCompare(a.name)
+                                : allTasks)
                     .map((e, i) => (
                         <TaskList
                             key={e.id}
@@ -58,10 +89,10 @@ function Todo() {
                             taskDone={e.done}
                             // allTasks={allTasks}
                             setAllTasks={setAllTasks}
-                            // indiceTask={i} 
+                        // indiceTask={i} 
                         />)
                     )}
-            <BasicPagination countPagination={1} isDisabled={isDisable} />
+            <BasicPagination countPagination={page + startIndex} isDisabled={isDisable} />
         </section>
     )
 }

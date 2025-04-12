@@ -14,22 +14,32 @@ import Select from '@mui/material/Select';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
-function Search({ filterSearch, tasksDone, totalTasks }) {
-    const [priority, setPriority] = useState('todos');
+function Search({ filterSearch, tasksDone, totalTasks, changeOrder, filterPriority }) {
+    const [priority, setPriority] = useState("todos");
     const [inputSearch, setInputSearch] = useState("");
 
-    const handleChange = (event) => {
-        setPriority(event.target.value);
-    };
-
-    function handleChangeInput(event) {
-        setInputSearch(event.target.value)
-        filterSearch(event.target.value)
+    function handleChange(e, set, filterProps) {
+        set(e.target.value)
+        filterProps(e.target.value)
     }
+
+    // const handleChange = (event) => {
+    //     setPriority(event.target.value);
+    //     filterPriority(event.target.value);
+    // };
+
+    // function handleChangeInput(event) {
+    //     setInputSearch(event.target.value)
+    //     filterSearch(event.target.value)
+    // }
 
     function deleteTextInput() {
         setInputSearch("")
         filterSearch("")
+    }
+
+    function handleChangeOrder(sort) {
+        changeOrder(sort)
     }
 
     return (
@@ -39,7 +49,8 @@ function Search({ filterSearch, tasksDone, totalTasks }) {
                 <TextField
                     value={inputSearch}
                     className="input-form"
-                    onChange={handleChangeInput}
+                    // onChange={handleChangeInput}
+                    onChange={(e) => handleChange(e, setInputSearch, filterSearch)}
                     label="Pesquisa"
                     variant="outlined"
                     size="small"
@@ -57,7 +68,8 @@ function Search({ filterSearch, tasksDone, totalTasks }) {
                     <FormControl>
                         <Select
                             value={priority}
-                            onChange={handleChange}
+                            // onChange={handleChange}
+                            onChange={(e) => handleChange(e, setPriority, filterPriority)}
                             size="small"
                             displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
@@ -69,23 +81,23 @@ function Search({ filterSearch, tasksDone, totalTasks }) {
                         </Select>
                     </FormControl>
                 </div>
-                {/* <div className="button-area">
+                <div className="button-area">
                     <p>Ordenar:</p>
                     <Button
                         variant="contained"
-                        onClick={handleChangeOrderAsc}
+                        onClick={() => handleChangeOrder("ASC")}
                         style={{ height: "40px" }}>
                         A-Z
                         &darr;
                     </Button>
                     <Button
                         variant="contained"
-                        onClick={handleChangeOrderDesc}
+                        onClick={() => handleChangeOrder("DESC")}
                         style={{ height: "40px" }}>
                         Z-A
                         &darr;
                     </Button>
-                </div> */}
+                </div>
                 <div className="progress-area">
                     <p>Progresso:</p>
                     <ProgressCircular tasksDone={tasksDone} totalTasks={totalTasks} />

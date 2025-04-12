@@ -7,3 +7,14 @@
     border-radius: 8px;
     box-shadow: 5px 5px 10px #00000077;
 }
+/* 
+
+@media (max-width: 400px) {
+    body {
+        padding: 0;
+    }
+    .container-todo {
+        width: 400px;
+        height: 100vh;
+    }
+} */
