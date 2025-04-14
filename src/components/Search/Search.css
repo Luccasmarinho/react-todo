@@ -37,3 +37,21 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 400px) {
+    .search-area .input-form {
+        width: 79.3%;
+        margin-right: 2px;
+    }
+
+    /* .search-area button {
+        width: 20px;
+        position: absolute;
+        right: 0;
+        top: 23px;
+    } */
+
+    /* .button-area  {
+        position: absolute;
+    } */
+}

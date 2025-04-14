@@ -52,6 +52,13 @@ function Todo() {
     const tasksDone = allTasks.filter((task) => task.done).length;
     const totalTasks = allTasks.length;
 
+    const totalPages = Math.ceil(allTasks.length / itemsPerPage);
+
+    const handlePageChange = (event, newPage) => {
+        setPage(newPage);
+    };
+
+
     return (
         <section className="container-todo">
             <TaskAction setAllTasks={setAllTasks} allTasks={allTasks} />
@@ -65,7 +72,7 @@ function Todo() {
             {!allTasks || allTasks.length == 0
                 ? <EmptyTask />
                 : allTasks
-                    // .slice(startIndex, endIndex)
+                    .slice(startIndex, endIndex)
                     .filter((e) =>
                         e.name.toLowerCase().includes(valueSearch.toLocaleLowerCase()))
                     .filter((e) =>
@@ -92,7 +99,12 @@ function Todo() {
                         // indiceTask={i} 
                         />)
                     )}
-            <BasicPagination countPagination={page + startIndex} isDisabled={isDisable} />
+            <BasicPagination
+                countPagination={totalPages}
+                isDisabled={isDisable}
+                page={page}
+                onPageChange={handlePageChange}
+            />
         </section>
     )
 }
