@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
 
-function TaskForm({ inputTitle, inputIcon, valuesForm, taskName = "", taskPriority = "Alta" }) {
+function TaskForm({ inputTitle, inputIcon, valuesForm, taskName = "", taskPriority = "Alta", allTasks }) {
     const [valuePriority, setValuePriority] = useState(taskPriority);
     const [inputNameValue, setInputNameValue] = useState(taskName);
 
@@ -21,12 +21,18 @@ function TaskForm({ inputTitle, inputIcon, valuesForm, taskName = "", taskPriori
         state(event.target.value);
     };
 
+    // function findDuplicateTask(allTasks) {
+    //     const findName = allTasks.find((e) => e.name == inputNameValue)
+    //     return findName == undefined ? false : true
+    // }
+
     function handleSubmit(e) {
         e.preventDefault()
         valuesForm({
-            name: inputNameValue,
-            priority: valuePriority
-        })
+                name: inputNameValue,
+                priority: valuePriority
+            })
+        // setInputNameValue("")
     }
 
     return (
@@ -39,13 +45,14 @@ function TaskForm({ inputTitle, inputIcon, valuesForm, taskName = "", taskPriori
                     <p>{inputTitle}</p>
                     <TextField
                         type="search"
+                        required
                         value={inputNameValue}
                         onChange={(e) => handleChange(e, setInputNameValue)}
                         className="input-form"
                         label="Nome da tarefa"
                         variant="outlined"
                         size="small"
-                        placeholder="Tarefa" />
+                        placeholder="Nome da tarefa" />
                 </div>
                 <div className="select-form">
                     <FormControl>

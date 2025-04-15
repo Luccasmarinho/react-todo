@@ -3,7 +3,7 @@ import TaskForm from '../TaskForm/TaskForm'
 
 import AddIcon from '@mui/icons-material/Add';
 
-const TaskAction = ({ setAllTasks }) => {
+const TaskAction = ({ setAllTasks, allTasks }) => {
 
     function generatorId() {
         let maxId;
@@ -12,6 +12,12 @@ const TaskAction = ({ setAllTasks }) => {
     }
 
     function addTaskLocalStorage(valuesInput) {
+        const isDuplicateTask = findDuplicateTask(allTasks)
+
+        function findDuplicateTask(allTasks) {
+            const findName = allTasks.find((e) => e.name == valuesInput.name)
+            return findName == undefined ? false : true
+        }
 
         function createLocalStorage() {
             JSON.parse(localStorage.getItem("todo")) == null
@@ -20,15 +26,20 @@ const TaskAction = ({ setAllTasks }) => {
         }
         createLocalStorage()
 
-        const keyValue = {
-            id: generatorId(),
-            ...valuesInput,
-            done: false
+        if (isDuplicateTask) {
+            alert("Já existe essa tarefa.")
+        } else {
+            const keyValue = {
+                id: generatorId(),
+                ...valuesInput,
+                done: false
+            }
+
+            const allDataLocalStorage = JSON.parse(localStorage.getItem("todo"))
+            localStorage.setItem("todo", JSON.stringify([...allDataLocalStorage, keyValue]))
+            setAllTasks([...allDataLocalStorage, keyValue])
         }
 
-        const allDataLocalStorage = JSON.parse(localStorage.getItem("todo"))
-        localStorage.setItem("todo", JSON.stringify([...allDataLocalStorage, keyValue]))
-        setAllTasks([...allDataLocalStorage, keyValue])
     }
 
     return (
