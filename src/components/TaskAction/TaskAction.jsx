@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import TaskForm from '../TaskForm/TaskForm'
 
 import AddIcon from '@mui/icons-material/Add';
+import { findDuplicateTask } from '../../utils/utils';
 
 const TaskAction = ({ setAllTasks, allTasks }) => {
 
@@ -12,12 +13,7 @@ const TaskAction = ({ setAllTasks, allTasks }) => {
     }
 
     function addTaskLocalStorage(valuesInput) {
-        const isDuplicateTask = findDuplicateTask(allTasks)
-
-        function findDuplicateTask(allTasks) {
-            const findName = allTasks.find((e) => e.name == valuesInput.name)
-            return findName == undefined ? false : true
-        }
+        const isDuplicateTask = findDuplicateTask(allTasks, undefined, valuesInput)
 
         function createLocalStorage() {
             JSON.parse(localStorage.getItem("todo")) == null
@@ -27,7 +23,7 @@ const TaskAction = ({ setAllTasks, allTasks }) => {
         createLocalStorage()
 
         if (isDuplicateTask) {
-            alert("Já existe essa tarefa.")
+            alert("Já existe uma tarefa com esse nome na sua To Do List. Por favor, insira uma tarefa diferente.")
         } else {
             const keyValue = {
                 id: generatorId(),
