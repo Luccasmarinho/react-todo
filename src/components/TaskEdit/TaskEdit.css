@@ -7,3 +7,15 @@
     border-radius: 8px;
     box-shadow: 5px 5px 10px #00000077;
 }
+
+@media (max-width: 400px) {
+    body {
+        padding: 0;
+    }
+    
+    .container-edit {
+        border-radius: 0;
+        width: 100vw;
+        min-height: 100vh;
+    }
+}
