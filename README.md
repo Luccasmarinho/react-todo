@@ -13,9 +13,10 @@ https://to-do-list-app-xi-ruddy.vercel.app/to-do-list
 - Pesquisar uma tarefa específica;
 - Marcar uma tarefa como concluída;
 - Filtrar tarefas feitas, não feitas e todas as tarefas;
-- Ordenar tarefas por ordem alfabética.
+- Ordenar tarefas por ordem alfabética;
+- Paginação.
 
-Nela também contém uma barra de progresso circular, onde contém a porcentagem das tarefas concluídas, paginação, além do projeto estar todo responsivo. 
+Nela também contém uma barra de progresso circular, onde contém a porcentagem das tarefas concluídas, além do projeto estar todo responsivo. 
 
 ## Tecnologias utilizadas:
 <div align="left">
